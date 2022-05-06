@@ -1,15 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
+import axios from "axios"
 
-const CreateTodo = () => {
+const CreateTodo = ({create}) => {
+    const [name,setName] = useState("")
+    const handleChange = (e) => {
+        setName(e.target.value)
+    }
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log("creating...")
+        create(name)
+        setName("")
     }
   return (
     <div>
-        <form>
-            <input />
+        <form onSubmit={handleSubmit}>
+            <input onChange={handleChange} value={name} />
         <button 
-            onClick={handleSubmit}
             type="submit">
                 Submit
         </button>
